@@ -5,9 +5,12 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char *font = "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true";
-static char *font2[] = { "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true" };
-static int borderpx = 0;
+static char *font = "mono:pixelsize=16:antialias=true:autohint=true";
+static char *font2[] = { "mono:pixelsize=16:antialias=true:autohint=true" };
+static int borderpx = 2;
+/* static char *font = "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true"; */
+/* static char *font2[] = { "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true" }; */
+/* static int borderpx = 0; */
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -108,32 +111,32 @@ char *termname = "st-256color";
 unsigned int tabspaces = 8;
 
 /* bg opacity */
-float alpha = 1.0;
+float alpha = 0.8;
 
 /* Terminal colors (16 first used in escape sequence) */
 static const char *colorname[] = {
-  "#282828", /* hard contrast: #1d2021 / soft contrast: #32302f */
-  "#cc241d",
-  "#98971a",
-  "#d79921",
-  "#458588",
-  "#b16286",
-  "#689d6a",
-  "#a89984",
-  "#928374",
-  "#fb4934",
-  "#b8bb26",
-  "#fabd2f",
-  "#83a598",
-  "#d3869b",
-  "#8ec07c",
-  "#ebdbb2",
-  [255] = 0,
-  /* more colors can be added after 255 to use with DefaultXX */
-  "#add8e6", /* 256 -> cursor */
-  "#555555", /* 257 -> rev cursor*/
-  "#282828", /* 258 -> bg */
-  "#ffffff", /* 259 -> fg */
+	"#21252b", /* hard contrast: #1d2021 / soft contrast: #32302f */
+	"#e06c75",
+	"#98c379",
+	"#e5c07b",
+	"#61afef",
+	"#c678dd",
+	"#56b6c2",
+	"#abb2bf",
+	"#767676",
+	"#e06c75",
+	"#98c379",
+	"#e5c07b",
+	"#61afef",
+	"#c678dd",
+	"#56b6c2",
+	"#abb2bf",
+	[255] = 0,
+	/* more colors can be added after 255 to use with DefaultXX */
+	"#add8e6", /* 256 -> cursor */
+	"#555555", /* 257 -> rev cursor*/
+	"#21252b", /* 258 -> bg */
+	"#abb2bf", /* 259 -> fg */
 };
 
 
@@ -224,7 +227,7 @@ static MouseShortcut mshortcuts[] = {
 
 /* Internal keyboard shortcuts. */
 #define MODKEY Mod1Mask
-#define TERMMOD (Mod4Mask|ShiftMask)
+#define TERMMOD (Mod1Mask|ShiftMask)
 
 MouseKey mkeys[] = {
   /* button               mask            function        argument */
@@ -248,13 +251,13 @@ static Shortcut shortcuts[] = {
   { ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
   { ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
   { XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-  { MODKEY,              XK_comma,       zoom,           {.f = +1} },
-  { MODKEY,              XK_period,        zoom,           {.f = -1} },
-  { MODKEY,               XK_g,        zoomreset,      {.f =  0} },
-  { ControlMask | ShiftMask,               XK_C,           clipcopy,       {.i =  0} },
+  { MODKEY,               XK_comma,       zoom,           {.f = -1} },
+  { MODKEY,               XK_period,      zoom,           {.f = +1} },
+  { MODKEY,               XK_g,           zoomreset,      {.f =  0} },
+  { MODKEY,               XK_c,           clipcopy,       {.i =  0} },
   { ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
-  { ControlMask | ShiftMask,               XK_V,           clippaste,      {.i =  0} },
-  { XK_ANY_MOD,		Button2,	selpaste,	{.i =  0} },
+  { MODKEY,               XK_v,           clippaste,      {.i =  0} },
+  { XK_ANY_MOD,		  Button2,	  selpaste,       {.i =  0} },
   { MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
   { MODKEY,               XK_Control_L,   iso14755,       {.i =  0} },
   { ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
@@ -267,8 +270,12 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
   { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
   { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
-  { MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
-  { MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
+  // TODO: fix ctrl+` mapping either into dwm or check if it's possible in ST keyboard protocol
+  { ControlMask,          XK_grave,       ttysend,        {.s = "\x1b\x4f\x50"} },
+  { MODKEY,               XK_s,           ttysend,        {.s = "\x13"} },
+  { MODKEY,               XK_slash,       ttysend,        {.s = "\x67\x63\x63\x1b"} },
+  { MODKEY,               XK_z,           changealpha,    {.f = -0.05} },
+  { MODKEY,               XK_a,           changealpha,    {.f = +0.05} },
   { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
   { TERMMOD,              XK_Down,        zoom,           {.f = -1} },
   { TERMMOD,              XK_K,           zoom,           {.f = +1} },
