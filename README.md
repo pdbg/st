@@ -1,6 +1,6 @@
 # st (Simple Terminal)
 
-My custom terminal build based on (lukesmith's build only for ligatures ) with some additional patches like newterm , rightclick paste , desktop entry ,sixel, live-reload xresources , anygeometry etc!.
+My custom terminal build based on (lukesmith's build only for ligatures) with some additional patches like newterm, rightclick paste, desktop entry,sixel, live-reload xresources, anygeometry etc!.
 
 ## Patches:
 
@@ -17,7 +17,7 @@ My custom terminal build based on (lukesmith's build only for ligatures ) with s
 - anygeometry
 - live reload ( change colors/fonts on the fly )
   and more...
-  <br>
+
 
 ## How to apply Xresources and live-reload ?
 
@@ -28,49 +28,31 @@ alias load="kill -USR1 $(pidof st)"
 alias  use="xrdb merge"
 
 command : use Xresourcesfile && load
-
 ```
 
-## Install <br>
 
-`cd st & make && sudo make install `<br>
+## Install
 
-## Ram comparison with other terminals 
-<img src="https://raw.githubusercontent.com/siduck76/dotfiles/master/rice%20flex/terminal_ramUsage.jpg"> <br><br>
+`cd st && make && sudo make install`
 
-## Keybindings<br>
+
+## Keybindings
 
 ```
-alt + c        Copy  <br>
-alt + v        Paste <br>
-alt  + comma            Zoom in <br>
-alt  + .                Zoom out <br>
-alt  + g                Reset Zoom<br>
-alt  + s                Increase Transparency<br>
-alt  + a                Decrease Transparency <br>
-copy anything and right click on the terminal ( will paste the copied thing ) 
-mod + shift + enter    open a new terminal with same cwd ( current working directory )
-
-
-alt + k                 scroll down 
-alt + j                 scroll up
-
+alt + n                 open a new terminal with same cwd ( current working directory )
+alt + c                 Copy
+alt + v                 Paste
+alt + down              scroll down
+alt + up                scroll up
+alt + shift + k         Zoom in
+alt + shift + j         Zoom out
+alt + comma             Zoom in
+alt + .                 Zoom out
+alt + g                 Reset Zoom
+alt + s                 Increase Transparency
+alt + a                 Decrease Transparency
+copy anything and right click on the terminal ( will paste the copied thing )
 ```
 
 you can change all of these in config.h
-<br>
 
-## Themes/Fonts used
-
-ls-icons: https://github.com/Yash-Handa/logo-ls <br>
-Xresources: onedark ( just xrdb merge xresourcesfile , do this everytime you make any change to xresources file ) from this repo itself.<br>
-Font: <a href="https://github.com/siduck76/matfonts"> JetbrainsMono Nerd Font + material design icon fonts </a>
-
-a lil<a href="https://share.vidyard.com/watch/sdFeoxaRr124U893WVEcxN?"> video </a>demo to show zoom/alpha changing via keybinds
-
-## Screenshots:
-
-<img src="https://raw.githubusercontent.com/siduck76/personal-backup/master/delete_this/bruh.png"> <br><br>
-<img src="https://raw.githubusercontent.com/siduck76/personal-backup/master/delete_this/ithree0-36-43.png"> <br><br>
-<img src="https://raw.githubusercontent.com/siduck76/personal-backup/master/delete_this/two7-00.png"> <br><br>
-<img src="https://raw.githubusercontent.com/siduck76/personal-backup/master/delete_this/u.png"> <br><hr>
