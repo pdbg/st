@@ -8,9 +8,6 @@
 static char *font = "mono:pixelsize=16:antialias=true:autohint=true";
 static char *font2[] = { "mono:pixelsize=16:antialias=true:autohint=true" };
 static int borderpx = 2;
-/* static char *font = "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true"; */
-/* static char *font2[] = { "JetBrainsMono Nerd Font :pixelsize=15:antialias=true:autohint=true" }; */
-/* static int borderpx = 0; */
 
 /*
  * What program is execed by st depends of these precedence rules:
@@ -254,6 +251,8 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_comma,       zoom,           {.f = -1} },
   { MODKEY,               XK_period,      zoom,           {.f = +1} },
   { MODKEY,               XK_g,           zoomreset,      {.f =  0} },
+  { TERMMOD,              XK_C,           clipcopy,       {.i =  0} },
+  { TERMMOD,              XK_V,           clippaste,      {.i =  0} },
   { MODKEY,               XK_c,           clipcopy,       {.i =  0} },
   { ShiftMask,            XK_Insert,      clippaste,      {.i =  0} },
   { MODKEY,               XK_v,           clippaste,      {.i =  0} },
@@ -264,12 +263,12 @@ static Shortcut shortcuts[] = {
   { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
   { MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
   { MODKEY,               XK_Page_Down,   kscrolldown,    {.i = -1} },
-  { MODKEY,               XK_k,           kscrollup,      {.i =  1} },
-  { MODKEY,               XK_j,           kscrolldown,    {.i =  1} },
+  /* { MODKEY,               XK_k,           kscrollup,      {.i =  1} }, */
+  /* { MODKEY,               XK_j,           kscrolldown,    {.i =  1} }, */
   { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
   { MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
-  { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
-  { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+  { MODKEY,               XK_u,           kscrollup,      {.i = 1} },
+  { MODKEY,               XK_d,           kscrolldown,    {.i = 1} },
   // TODO: fix ctrl+` mapping either into dwm or check if it's possible in ST keyboard protocol
   { ControlMask,          XK_grave,       ttysend,        {.s = "\x1b\x4f\x50"} },
   { MODKEY,               XK_s,           ttysend,        {.s = "\x13"} },
@@ -286,6 +285,7 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_y,           externalpipe,   {.v = copyurlcmd } },
   { MODKEY,               XK_o,           externalpipe,   {.v = copyoutput } },
   { TERMMOD,              XK_Return,      newterm,        {.i =  0} },
+  { MODKEY,               XK_n,           newterm,        {.i =  0} },
 
 };
 

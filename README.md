@@ -30,15 +30,6 @@ alias  use="xrdb merge"
 command : use Xresourcesfile && load
 
 ```
-## Xresources live-reload demo
-
-<img src="https://github.com/siduck76/dotfiles/blob/master/rice%20flex/live-reloadXresources.gif"> <br><br>
-
-<b>DON'T SKIP THE README, if you want to have a similar setup / know default keybinds.<br><br></b>
-
-## Dependencies : <br>
-
-`libXft-devel libX11-devel harfbuzz-devel libXext-devel libXrender-devel libXinerama-devel ( on void linux , these are probably already installed on your system if you use arch based or debian I think)`
 
 ## Install <br>
 
@@ -49,9 +40,9 @@ command : use Xresourcesfile && load
 
 ## Keybindings<br>
 
-<pre>
-ctrl + shift + c        Copy  <br>
-ctrl + shift + v        Paste <br>
+```
+alt + c        Copy  <br>
+alt + v        Paste <br>
 alt  + comma            Zoom in <br>
 alt  + .                Zoom out <br>
 alt  + g                Reset Zoom<br>
@@ -64,7 +55,7 @@ mod + shift + enter    open a new terminal with same cwd ( current working direc
 alt + k                 scroll down 
 alt + j                 scroll up
 
-</pre>
+```
 
 you can change all of these in config.h
 <br>
