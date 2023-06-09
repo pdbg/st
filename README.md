@@ -1,25 +1,28 @@
-# st (Simple Terminal)
+# St (Suckless Terminal)
 
 My custom terminal build based on (lukesmith's build only for ligatures) with some additional patches like newterm, rightclick paste, desktop entry,sixel, live-reload xresources, anygeometry etc!.
 
 ## Patches:
 
 - Ligatures
+- sixel (check sixel branch)
+- scrollback
 - Clipboard
 - Alpha(Transparency)
 - Boxdraw
-- w3m
+- patch_column ( doesnt cut text while resizing)
 - font2
 - right click paste
 - st desktop entry
 - newterm
-- anysize
 - anygeometry
+- xresources
+- sync patch ( Better draw timing to reduce flicker/tearing and improve animation smoothness )
 - live reload ( change colors/fonts on the fly )
   and more...
 
 
-## How to apply Xresources and live-reload ?
+## Xresources live-reload
 
 ```
  #make an alias for this command
@@ -29,7 +32,6 @@ alias  use="xrdb merge"
 
 command : use Xresourcesfile && load
 ```
-
 
 ## Install
 
@@ -53,6 +55,5 @@ alt + s                 Increase Transparency
 alt + a                 Decrease Transparency
 copy anything and right click on the terminal ( will paste the copied thing )
 ```
-
 you can change all of these in config.h
 

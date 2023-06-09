@@ -52,6 +52,12 @@ static double minlatency = 8;
 static double maxlatency = 33;
 
 /*
+ * Synchronized-Update timeout in ms
+ * https://gitlab.com/gnachman/iterm2/-/wikis/synchronized-updates-spec
+ */
+static uint su_timeout = 200;
+
+/*
  * blinking timeout (set to 0 to disable blinking) for the terminal blinking
  * attribute.
  */
@@ -147,13 +153,19 @@ unsigned int defaultcs = 256;
 unsigned int defaultrcs = 257;
 
 /*
- * Default shape of cursor
- * 2: Block ("█")
- * 4: Underline ("_")
- * 6: Bar ("|")
- * 7: Snowman ("☃")
+ * https://invisible-island.net/xterm/ctlseqs/ctlseqs.html#h4-Functions-using-CSI-_-ordered-by-the-final-character-lparen-s-rparen:CSI-Ps-SP-q.1D81
+ * Default style of cursor
+ * 0: Blinking block
+ * 1: Blinking block (default)
+ * 2: Steady block ("█")
+ * 3: Blinking underline
+ * 4: Steady underline ("_")
+ * 5: Blinking bar
+ * 6: Steady bar ("|")
+ * 7: Blinking st cursor
+ * 8: Steady st cursor
  */
-static unsigned int cursorshape = 2;
+static unsigned int cursorshape = 1;
 
 /*
  * Default columns and rows numbers
@@ -216,6 +228,7 @@ ResourcePref resources[] = {
  * Internal mouse shortcuts.
  * Beware that overloading Button1 will disable the selection.
  */
+const unsigned int mousescrollincrement = 3;
 static MouseShortcut mshortcuts[] = {
   /* button               mask            string */
   { Button4,              XK_NO_MOD,      "\031" },
@@ -228,8 +241,8 @@ static MouseShortcut mshortcuts[] = {
 
 MouseKey mkeys[] = {
   /* button               mask            function        argument */
-  { Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
-  { Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
+  { Button4,              XK_NO_MOD,      kscrollup,      {.i =  mousescrollincrement} },
+  { Button5,              XK_NO_MOD,      kscrolldown,    {.i =  mousescrollincrement} },
   { Button4,              Mod4Mask,        zoom,           {.f =  +1} },
   { Button5,              Mod4Mask,        zoom,           {.f =  -1} },
 };
@@ -258,7 +271,7 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_v,           clippaste,      {.i =  0} },
   { XK_ANY_MOD,		  Button2,	  selpaste,       {.i =  0} },
   { MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
-  { MODKEY,               XK_Control_L,   iso14755,       {.i =  0} },
+  { ControlMask | ShiftMask,               XK_U,           iso14755,       {.i =  0} },
   { ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
   { ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
   { MODKEY,               XK_Page_Up,     kscrollup,      {.i = -1} },
@@ -267,6 +280,7 @@ static Shortcut shortcuts[] = {
   /* { MODKEY,               XK_j,           kscrolldown,    {.i =  1} }, */
   { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
   { MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
+// <<<<<<< HEAD:config.h
   { MODKEY,               XK_u,           kscrollup,      {.i = 1} },
   { MODKEY,               XK_d,           kscrolldown,    {.i = 1} },
   // TODO: fix ctrl+` mapping either into dwm or check if it's possible in ST keyboard protocol
@@ -275,6 +289,13 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_slash,       ttysend,        {.s = "\x67\x63\x63\x1b"} },
   { MODKEY,               XK_z,           changealpha,    {.f = -0.05} },
   { MODKEY,               XK_a,           changealpha,    {.f = +0.05} },
+// =======
+//   { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
+//   { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
+//   { MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
+//   { MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
+//   { MODKEY,		XK_m,		changealpha,	{.f = +2.00} },
+// >>>>>>> siduck76:config.def.h
   { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
   { TERMMOD,              XK_Down,        zoom,           {.f = -1} },
   { TERMMOD,              XK_K,           zoom,           {.f = +1} },
