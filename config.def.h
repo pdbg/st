@@ -280,7 +280,6 @@ static Shortcut shortcuts[] = {
   /* { MODKEY,               XK_j,           kscrolldown,    {.i =  1} }, */
   { MODKEY,               XK_Up,          kscrollup,      {.i =  1} },
   { MODKEY,               XK_Down,        kscrolldown,    {.i =  1} },
-// <<<<<<< HEAD:config.h
   { MODKEY,               XK_u,           kscrollup,      {.i = 1} },
   { MODKEY,               XK_d,           kscrolldown,    {.i = 1} },
   // TODO: fix ctrl+` mapping either into dwm or check if it's possible in ST keyboard protocol
@@ -289,13 +288,6 @@ static Shortcut shortcuts[] = {
   { MODKEY,               XK_slash,       ttysend,        {.s = "\x67\x63\x63\x1b"} },
   { MODKEY,               XK_z,           changealpha,    {.f = -0.05} },
   { MODKEY,               XK_a,           changealpha,    {.f = +0.05} },
-// =======
-//   { MODKEY,               XK_u,           kscrollup,      {.i = -1} },
-//   { MODKEY,               XK_d,           kscrolldown,    {.i = -1} },
-//   { MODKEY,		XK_s,		changealpha,	{.f = -0.05} },
-//   { MODKEY,		XK_a,		changealpha,	{.f = +0.05} },
-//   { MODKEY,		XK_m,		changealpha,	{.f = +2.00} },
-// >>>>>>> siduck76:config.def.h
   { TERMMOD,              XK_Up,          zoom,           {.f = +1} },
   { TERMMOD,              XK_Down,        zoom,           {.f = -1} },
   { TERMMOD,              XK_K,           zoom,           {.f = +1} },
