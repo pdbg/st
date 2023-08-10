@@ -1353,6 +1353,14 @@ xinit(int cols, int rows)
 				PropModeReplace, (uchar *)icon_argb, icon_n);
 	}
 
+	// Patch to remove titlebar
+	// Ref. https://github.com/bakkeby/patches/blob/master/st/st-no_window_decorations-0.8.5-20220824-72fd327.diff
+	Atom motifwmhints = XInternAtom(xw.dpy, "_MOTIF_WM_HINTS", True);
+	unsigned int data[] = { 0x2, 0x0, 0x0, 0x0, 0x0 };
+	XChangeProperty(xw.dpy, xw.win, motifwmhints, motifwmhints, 16,
+				PropModeReplace, (unsigned char *)data, 5);
+
+
 	xw.netwmpid = XInternAtom(xw.dpy, "_NET_WM_PID", False);
 	XChangeProperty(xw.dpy, xw.win, xw.netwmpid, XA_CARDINAL, 32,
 			PropModeReplace, (uchar *)&thispid, 1);
